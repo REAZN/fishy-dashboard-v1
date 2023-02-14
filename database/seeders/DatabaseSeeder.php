@@ -14,7 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create()->each(function ($user) {
+            $inventory = \App\Models\Inventory::factory()->make();
+
+            $user->inventory()->save($inventory);
+            $user->stat()->save(\App\Models\Stat::factory()->make());
+            $user->cooldown()->save(\App\Models\Cooldown::factory()->make());
+
+            $inventory->items()->saveMany(\App\Models\ItemInventory::factory(1)->make());
+            $inventory->fish()->saveMany(\App\Models\FishInventory::factory(1)->make());
+        });
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
