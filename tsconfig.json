@@ -2,6 +2,7 @@
     "compilerOptions": {
         "types": ["vite/client"],
         "module": "esnext",
-        "moduleResolution": "nodenext",
+        "moduleResolution": "node",
+      "jsx": "react"
     }
   }
